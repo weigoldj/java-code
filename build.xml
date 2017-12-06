@@ -1,0 +1,74 @@
+<project name="test" default="init" basedir=".">
+  <description>
+    simple example build file
+  </description>
+  <!-- set global properties for this build -->
+  <property name="src" location="src"/>
+  <property name="lib" value="lib"/>
+  <property name="build" location="build"/>
+  <property name="ant.build.javac.source" value="1.8"/>
+ 
+   
+  <target name="init">
+    <!-- set ant runtime to false -->
+    <presetdef name="javac">
+      <javac includeantruntime="false" />
+    </presetdef>
+    <mkdir dir="${build}"/>
+    
+    <!-- add jar files in lib -->
+    <path id="class.path">
+        <fileset dir="${lib}">
+          <include name="**/*.jar" />
+        </fileset>
+      </path>
+  </target>
+  
+  <target name="clean" description="clean up">
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  </target>
+  
+
+  <target name="compile" depends="init" description="compile the source">
+    <!-- Compile the java code from ${src} into ${build} -->
+    <echo>Compiling ${class.path} files ...</echo>
+    <javac srcdir="${src}" destdir="${build}" debug="true" >
+      <compilerarg value="-Xlint:unchecked"/>
+    	<classpath refid="class.path"/>
+      <classpath>
+        <pathelement location="./build"/>
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="run" depends="clean, compile" description="runs main app">
+    <java classname="examples.MainApp" fork="true">
+        <classpath>
+          <pathelement location="${build}"/>
+        </classpath>
+    </java>
+  </target>
+  
+
+  <target name="test" depends="clean, compile" description="run all tests">
+  <junit printsummary="yes" fork="yes">
+  	<classpath refid="class.path"/>
+    <classpath>
+      <pathelement location="${src}"/>
+      <pathelement path="${build}"/>
+      <pathelement location="${class.path}"/>
+    </classpath>
+
+    <formatter type="plain" usefile="false" />
+    
+    <batchtest fork="yes" todir="${src}">
+      <fileset dir="${src}">
+        <include name="**/*Test.java"/>
+      </fileset>
+    </batchtest>
+  </junit>
+  </target>
+    
+</project>
