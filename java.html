@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Johann's Notes</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="card" padding: "30px">
+    <div class="card-block">
+      <h4 class="card-title">Java</h4>
+      <h6 class="card-subtitle mb-2 text-muted">Quick Reference Guide</h6>
+      <a href="git.html" class="card-link">GIT</a>
+      <a href="java.html" class="card-link">Java</a>
+      <a href="sql.html" class="card-link">SQL</a>
+    </div>
+  </div>
+  
+  <h3>Arrays <small>java.util.Arrays</small></h3>
+  <pre>
+    // declares an array of integers
+    int[] anArray;
+
+    // declares an array with enough memory to hold 10 integers
+    anArray = new int[10];
+
+    // creates and intializes the array.
+    int[] anArray = { 1, 2, 3, 4, 5 };  
+
+    // Multidimensional array 
+    String[][] names = { "train", "plane", "car"}, { "diesel", "kerosene", "gas" }};
+
+    // array copy given two defined arrays, give start position 
+    // in each array and length of the copy.
+    System.arraycopy(arr1, int start_pos, arr2, start_post, int length);
+
+    // copy array with one defined array
+    int[] tmp = java.util.Arrays.copyOfRange(arr1, int start_pos, int length);
+    
+    
+    // loop thru arrays.
+    private String[] cast = { "Eric", "Kenny", "Kyle", "Stan", "Chef", "Bebe" };
+    List<String> crunchifyList = new ArrayList<String>();
+    
+    // sort Array
+    Arrays.sort(cast);  
+    
+    // Need to find if something exists in Array?
+    // Must be sorted first, if not found returns -1.  If not sortable then undefined results.
+    System.out.println("Kyle is at index " + Arrays.binarySearch(cast, "Kyle"));
+    System.out.println("Index 4 is " + cast[Arrays.binarySearch(cast, "Kyle")]);
+ 
+ 
+   </pre>
+  
+   <h3>Array List <small>java.util.Arraylist</small></h3>
+   <pre>
+     // Array to ArrayList
+     private ArrayList<String> cast_list = new ArrayList<>(Arrays.asList(cast));
+    
+     // iterate via "for loop"
+     System.out.println("==> For Loop Example.");
+     for (int i = 0; i < cast_list.size(); i++) {
+       System.out.println(cast_list.get(i));
+     }
+ 
+     // iterate via "New way to loop"
+     System.out.println("\n==> Advance For Loop Example..");
+     for (String str : cast_list) {
+       System.out.println(str);
+     }
+ 
+     // iterate via "iterator loop"
+     System.out.println("\n==> Iterator Example...");
+     Iterator<String> itr = cast_list.iterator();
+     while (itr.hasNext()) {
+       System.out.println(irt.next());
+     }
+
+   </pre>
+  
+  <h3>Maps <small>java.util.Map</small></h3>
+  <pre>
+    <strong>Maps</strong>
+    Map<KeyClass, ValueClass> myMap;
+
+    <strong>Iterate all keys</strong>
+    for (KeyClass key  : myMap.keySet()) 
+      System.out.println(key);
+
+    <strong>Iterate all values</strong>
+    for (ValueClass value  : myMap.values()) 
+      System.out.println(value);
+
+    <strong>Iterate all key/value pairs</strong>
+    for (Entry<KeyClass, ValueClass> entry  : myMap.entrySet()) 
+      System.out.println(entry.getKey() + " - " + entry.getValue());
+    
+  </pre>
+ 
+</div>
+</body>
+</html>
